@@ -63,32 +63,41 @@ begin
     writeln('Data rute tidak ditemukan, menginisialisasi data baru.');
 
     rute[1].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
-    rute[1].Lokasiketibaan := 'Jakarta(CGK)'; 
+    rute[1].Lokasiketibaan := 'Jakarta(CGK)';       
     rute[1].WaktuKeberangkatan := '06:00';
+    
     rute[2].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
-    rute[2].Lokasiketibaan := 'Surabaya(SUB)'; 
+    rute[2].Lokasiketibaan := 'Surabaya(SUB)';      
     rute[2].WaktuKeberangkatan := '06:30';
+    
     rute[3].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
-    rute[3].Lokasiketibaan := 'Denpasar(DPS)'; 
+    rute[3].Lokasiketibaan := 'Denpasar(DPS)';      
     rute[3].WaktuKeberangkatan := '07:00';
+    
     rute[4].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
-    rute[4].Lokasiketibaan := 'Yogyakarta(YIA)'; 
+    rute[4].Lokasiketibaan := 'Yogyakarta(YIA)';    
     rute[4].WaktuKeberangkatan := '07:30';
-    rute[5].LokasiKeberangkatan := 'Palangkaraya(PKY)';
-    rute[5].Lokasiketibaan := 'Palembang(PLM)';
+    
+    rute[5].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
+    rute[5].Lokasiketibaan := 'Palembang(PLM)';     
     rute[5].WaktuKeberangkatan := '08:00';
-    rute[6].LokasiKeberangkatan := 'Palangkaraya(PKY)';
-    rute[6].Lokasiketibaan := 'Aceh(BTJ)';
+    
+    rute[6].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
+    rute[6].Lokasiketibaan := 'Aceh(BTJ)';          
     rute[6].WaktuKeberangkatan := '08:30';
-    rute[7].LokasiKeberangkatan := 'Palangkaraya(PKY)';
-    rute[7].Lokasiketibaan := 'Makassar(UPG)';
+    
+    rute[7].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
+    rute[7].Lokasiketibaan := 'Makassar(UPG)';      
     rute[7].WaktuKeberangkatan := '09:00';
+    
     rute[8].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
-    rute[8].Lokasiketibaan := 'Manado(MDC'; 
+    rute[8].Lokasiketibaan := 'Manado(MDC';         
     rute[8].WaktuKeberangkatan := '09:30';
+    
     rute[9].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
-    rute[9].Lokasiketibaan := 'Jayapura(JCC)'; 
+    rute[9].Lokasiketibaan := 'Jayapura(JCC)';      
     rute[9].WaktuKeberangkatan := '10:00';
+    
     rute[10].LokasiKeberangkatan := 'Palangkaraya(PKY)'; 
     rute[10].Lokasiketibaan := 'Banjarmasin(BDJ)'; 
     rute[10].WaktuKeberangkatan := '10:30';
@@ -160,7 +169,7 @@ begin
     close(fileTiket);
     writeln('Tiket berhasil dipesan!');
   end;
-  SimpanDataRute();
+  SimpanDataRute;
 end;
 
 procedure BatalkanTiket(indexRute: integer);
@@ -186,7 +195,7 @@ begin
   if not tiketDitemukan then
     writeln('Tidak dapat menemukan tiket atas nama ', namaPembatal, ' Pada Rute Ini.');
   
-  SimpanDataRute();
+  SimpanDataRute;
 end;
 
 procedure Menu;
@@ -202,7 +211,7 @@ begin
   clrscr;
   AmbilDataRute;
   repeat
-    Menu();
+    Menu;
     write('Pilih menu: ');
     readln(pilihanMenu);
     clrscr;
