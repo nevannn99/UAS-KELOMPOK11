@@ -9,8 +9,8 @@ type
   RutePenerbangan = record
     LokasiKeberangkatan: string;
     LokasiKetibaan: string;
-    WaktuKeberangkatan: string; // Menyimpan waktu keberangkatan
-    kursi: array[1..MAX_KURSI] of string; // Menyimpan nama penumpang di setiap kursi
+    WaktuKeberangkatan: string;
+    kursi: array[1..MAX_KURSI] of string;
   end;
 
 var
@@ -28,7 +28,8 @@ begin
   rewrite(fileRute);
   for i := 1 to MAX_RUTE do
   begin
-    writeln(fileRute, rute[i].LokasiKeberangkatan, ' - ', rute[i].Lokasiketibaan, ' - ', rute[i].WaktuKeberangkatan);
+    writeln(fileRute, rute[i].LokasiKeberangkatan, ' - ',
+    rute[i].Lokasiketibaan, ' - ', rute[i].WaktuKeberangkatan);
     for j := 1 to MAX_KURSI do
       writeln(fileRute, rute[i].kursi[j]);
   end;
@@ -51,7 +52,7 @@ begin
       Delete(temp, 1, Pos(' - ', temp) + 2);
       rute[i].Lokasiketibaan := Copy(temp, 1, Pos(' - ', temp) - 1);
       Delete(temp, 1, Pos(' - ', temp) + 2);
-      rute[i].WaktuKeberangkatan := temp; // Membaca waktu keberangkatan
+      rute[i].WaktuKeberangkatan := temp; 
 
       for j := 1 to MAX_KURSI do
         readln(fileRute, rute[i].kursi[j]);
@@ -104,7 +105,7 @@ begin
     
     for i := 1 to MAX_RUTE do
       for j := 1 to MAX_KURSI do
-        rute[i].kursi[j] := ''; // Awalnya semua kursi tidak ada penumpang (kosong)
+        rute[i].kursi[j] := ''; 
   end;
 end;
 
@@ -115,7 +116,8 @@ begin
   writeln('Daftar Rute Penerbangan:');
   for i := 1 to MAX_RUTE do
   begin
-    writeln(i, '. ', rute[i].LokasiKeberangkatan, ' - ', rute[i].Lokasiketibaan, ' (Berangkat: ', rute[i].WaktuKeberangkatan, ')');
+    writeln(i, '. ', rute[i].LokasiKeberangkatan, ' - ',
+    rute[i].Lokasiketibaan, ' (Berangkat: ', rute[i].WaktuKeberangkatan, ')');
   end;
 end;
 
@@ -123,18 +125,19 @@ end;
 function CariKursiKosong(indexRute, nomorKursi: integer): integer;
 begin
   if nomorKursi > MAX_KURSI then
-    CariKursiKosong := 0 // Tidak ada kursi kosong
+    CariKursiKosong := 0 
   else if rute[indexRute].kursi[nomorKursi] = '' then
-    CariKursiKosong := nomorKursi // Kursi kosong ditemukan
+    CariKursiKosong := nomorKursi 
   else
-    CariKursiKosong := CariKursiKosong(indexRute, nomorKursi + 1); // Rekursif mencari kursi kosong
+    CariKursiKosong := CariKursiKosong(indexRute, nomorKursi + 1); 
 end;
 
 procedure TampilkanKursi(indexRute: integer);
 var
   i: integer;
 begin
-  writeln('Kursi di Rute ', rute[indexRute].LokasiKeberangkatan, ' - ', rute[indexRute].Lokasiketibaan, ':');
+  writeln('Kursi di Rute ', rute[indexRute].LokasiKeberangkatan, ' - ',
+  rute[indexRute].Lokasiketibaan, ':');
   for i := 1 to MAX_KURSI do
   begin
     if rute[indexRute].kursi[i] = '' then
@@ -157,15 +160,15 @@ begin
     write('Masukkan nama penumpang: ');
     readln(namaPenumpang);
     
-    // Menandai kursi telah terpesan dengan menyimpan nama penumpang
     rute[indexRute].kursi[nomorKursi] := namaPenumpang;
-    // Simpan data pemesanan ke dalam file
-    assign(fileTiket, 'pemesanan_tiket.txt');
+       assign(fileTiket, 'pemesanan_tiket.txt');
     if not FileExists('pemesanan_tiket.txt') then
       rewrite(fileTiket)
     else
       append(fileTiket);
-    writeln(fileTiket, 'Nama: ', namaPenumpang, ', Rute: ', rute[indexRute].LokasiKeberangkatan, ' - ', rute[indexRute].Lokasiketibaan, ', Kursi: ', nomorKursi);
+    writeln(fileTiket, 'Nama: ', namaPenumpang, ', Rute: ',
+    rute[indexRute].LokasiKeberangkatan, 
+    ' - ', rute[indexRute].Lokasiketibaan, ', Kursi: ', nomorKursi);
     close(fileTiket);
     writeln('Tiket berhasil dipesan!');
   end;
@@ -187,13 +190,15 @@ begin
     if rute[indexRute].kursi[nomorKursi] = namaPembatal then
     begin
       rute[indexRute].kursi[nomorKursi] := '';
-      writeln('Tiket untuk ', namaPembatal, ' berhasil dibatalkan di kursi nomor ', nomorKursi);
+      writeln('Tiket untuk ', namaPembatal, 
+      ' berhasil dibatalkan di kursi nomor ',nomorKursi);
       tiketDitemukan := true;
       break;
     end;
   end;
   if not tiketDitemukan then
-    writeln('Tidak dapat menemukan tiket atas nama ', namaPembatal, ' Pada Rute Ini.');
+    writeln('Tidak dapat menemukan tiket atas nama ', 
+    namaPembatal, ' Pada Rute Ini.');
   
   SimpanDataRute;
 end;
